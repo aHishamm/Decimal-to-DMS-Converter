@@ -32,6 +32,6 @@ def toDMS(coordinate):
 def GMapsRoute(DMSCoordinate): 
     webbrowser.get('chrome').open_new("google.com/maps/place/"+DMSCoordinate) 
 #Please enter the latlong coordinate in this format --> "lat, long"
-ConvertedCoordinate = toDMS(input("Please enter the latlong coordinate to be converted: (should be comma separated)\n"))
-GMapsRoute(ConvertedCoordinate)
+#ConvertedCoordinate = toDMS(input("Please enter the latlong coordinate to be converted: (should be comma separated)\n"))
+#GMapsRoute(ConvertedCoordinate)
 
