@@ -1,4 +1,8 @@
 import math 
+import webbrowser
+webbrowser.register('chrome',
+	None,
+	webbrowser.BackgroundBrowser("C://Program Files (x86)//Google//Chrome//Application//chrome.exe"))
 def toDMS(coordinate): 
     coordinate = coordinate.replace(" ","")
     coordinateList = coordinate.split(",")
@@ -23,8 +27,11 @@ def toDMS(coordinate):
     minutesVal = math.floor(minutesNTruncated)
     secondsVal = round((minutesNTruncated - minutesVal) * 60)
     DMSList.append(str(degreesVal)+"°"+str(minutesVal)+"'"+str(secondsVal)+'"'+EWParam)
-    return " ".join(DMSList)
+    return "+".join(DMSList)
 
-#print(toDMS(24.210959))
+def GMapsRoute(DMSCoordinate): 
+    webbrowser.get('chrome').open_new("google.com/maps/place/"+DMSCoordinate) 
 #Please enter the latlong coordinate in this format --> "lat, long"
 ConvertedCoordinate = toDMS(input("Please enter the latlong coordinate to be converted: (should be comma separated)\n"))
+GMapsRoute(ConvertedCoordinate)
+
