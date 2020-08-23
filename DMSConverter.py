@@ -27,11 +27,10 @@ def toDMS(coordinate):
     minutesVal = math.floor(minutesNTruncated)
     secondsVal = round((minutesNTruncated - minutesVal) * 60)
     DMSList.append(str(degreesVal)+"°"+str(minutesVal)+"'"+str(secondsVal)+'"'+EWParam)
-    return "+".join(DMSList)
+    return " ".join(DMSList)
 
 def GMapsRoute(DMSCoordinate): 
-    webbrowser.get('chrome').open_new("google.com/maps/place/"+DMSCoordinate) 
-#Please enter the latlong coordinate in this format --> "lat, long"
-#ConvertedCoordinate = toDMS(input("Please enter the latlong coordinate to be converted: (should be comma separated)\n"))
-#GMapsRoute(ConvertedCoordinate)
+    DMSCoordinate = DMSCoordinate.split() 
+    newDMS = "+".join(DMSCoordinate)
+    webbrowser.get('chrome').open_new("google.com/maps/place/"+newDMS) 
 
