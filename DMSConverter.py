@@ -1,8 +1,14 @@
 import math 
 import webbrowser
-webbrowser.register('chrome',
-	None,
-	webbrowser.BackgroundBrowser("C://Program Files (x86)//Google//Chrome//Application//chrome.exe"))
+import os 
+if os.name == 'nt': 
+    webbrowser.register('chrome',
+	    None,
+	    webbrowser.BackgroundBrowser("C://Program Files (x86)//Google//Chrome//Application//chrome.exe"))
+else: 
+    webbrowser.register('chrome',
+    None,
+    webbrowser.BackgroundBrowser("/usr/bin/google-chrome"))
 def toDMS(coordinate): 
     coordinate = coordinate.replace(" ","")
     coordinateList = coordinate.split(",")
