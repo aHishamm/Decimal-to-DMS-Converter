@@ -9,31 +9,35 @@ else:
     webbrowser.register('chrome',
     None,
     webbrowser.BackgroundBrowser("/usr/bin/google-chrome"))
-def toDMS(coordinate): 
-    coordinate = coordinate.replace(" ","")
-    coordinateList = coordinate.split(",")
-    DMSList = []
-    if float(coordinateList[0]) > 0: 
-        NSParam = 'N'
-    else: 
-        NSParam = 'S'
-    if float(coordinateList[1]) > 0: 
-        EWParam = 'E'
-    else: 
-        EWParam = 'W' 
-    absoluteVal = abs(float(coordinateList[0]))
-    degreesVal = math.floor(absoluteVal)
-    minutesNTruncated = (absoluteVal - degreesVal) * 60
-    minutesVal = math.floor(minutesNTruncated)
-    secondsVal = round((minutesNTruncated - minutesVal) * 60)
-    DMSList.append(str(degreesVal)+"°"+str(minutesVal)+"'"+str(secondsVal)+'"'+NSParam)
-    absoluteVal = abs(float(coordinateList[1]))
-    degreesVal = math.floor(absoluteVal)
-    minutesNTruncated = (absoluteVal - degreesVal) * 60
-    minutesVal = math.floor(minutesNTruncated)
-    secondsVal = round((minutesNTruncated - minutesVal) * 60)
-    DMSList.append(str(degreesVal)+"°"+str(minutesVal)+"'"+str(secondsVal)+'"'+EWParam)
-    return " ".join(DMSList)
+def toDMS(coordinate):
+    try:
+        coordinate = coordinate.replace(" ","")
+        coordinateList = coordinate.split(",")
+        DMSList = []
+        if float(coordinateList[0]) > 0: 
+            NSParam = 'N'
+        else: 
+            NSParam = 'S'
+        if float(coordinateList[1]) > 0: 
+            EWParam = 'E'
+        else: 
+            EWParam = 'W' 
+        absoluteVal = abs(float(coordinateList[0]))
+        degreesVal = math.floor(absoluteVal)
+        minutesNTruncated = (absoluteVal - degreesVal) * 60
+        minutesVal = math.floor(minutesNTruncated)
+        secondsVal = round((minutesNTruncated - minutesVal) * 60)
+        DMSList.append(str(degreesVal)+"°"+str(minutesVal)+"'"+str(secondsVal)+'"'+NSParam)
+        absoluteVal = abs(float(coordinateList[1]))
+        degreesVal = math.floor(absoluteVal)
+        minutesNTruncated = (absoluteVal - degreesVal) * 60
+        minutesVal = math.floor(minutesNTruncated)
+        secondsVal = round((minutesNTruncated - minutesVal) * 60)
+        DMSList.append(str(degreesVal)+"°"+str(minutesVal)+"'"+str(secondsVal)+'"'+EWParam)
+        return " ".join(DMSList)
+    except:
+        print("Please enter the coordinates in the proper format: \"Latitude, Longitude\"")
+        return "Please enter a proper format: \"Latitude, Longitude\""
 
 def GMapsRoute(DMSCoordinate): 
     DMSCoordinate = DMSCoordinate.split() 
