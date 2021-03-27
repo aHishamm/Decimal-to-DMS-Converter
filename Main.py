@@ -1,9 +1,11 @@
 import PySimpleGUI as sg
 import DMSConverter
+convertedValList = []
+originalValList = []
 sg.theme('LightBlue')
 layout = [  [sg.Text('Please enter the latlong coordinate to be converted: (should be comma separated)')],
             [sg.InputText()],
-            [sg.Button('Ok'), sg.Button('Cancel'), sg.Button('Go to Google Maps')],
+            [sg.Button('Ok'), sg.Button('Cancel'), sg.Button('Go to Google Maps'),sg.Button('Export DMS to CSV File')],
             [sg.Text('Converted DMS Coordinates', key='-OUTPUT-')],
             [sg.Text('                                                            ', key='-Out')] 
             ]
@@ -16,10 +18,14 @@ while True:
         break
     if event == 'Ok':
         convertedVal = DMSConverter.toDMS(values[0])
+        originalValList.append(values[0])
+        convertedValList.append(convertedVal)
         print('You entered ', convertedVal)
         #window['-OUTPUT-'].update(convertedVal)
         window['-Out'].update(convertedVal)
     if event == 'Go to Google Maps': 
         DMSConverter.GMapsRoute(convertedVal)
+    if event == 'Export DMS to CSV File': 
+        DMSConverter.exportCSV(originalValList,convertedValList)
 
 window.close()

@@ -1,6 +1,7 @@
 import math 
 import webbrowser
 import os 
+import pandas as pd 
 if os.name == 'nt': 
     webbrowser.register('chrome',
 	    None,
@@ -43,4 +44,10 @@ def GMapsRoute(DMSCoordinate):
     DMSCoordinate = DMSCoordinate.split() 
     newDMS = "+".join(DMSCoordinate)
     webbrowser.get('chrome').open_new("google.com/maps/place/"+newDMS) 
+
+def exportCSV(originalValList,convertedValList): 
+    coordinateDict = {'Decimal Coordinate History':originalValList, 'DMS Coordinate History': convertedValList}
+    coordinateDataFrame = pd.DataFrame(coordinateDict)
+    coordinateDataFrame.to_csv(r'export_DMS_coordinate_history.csv',index=False)
+    print(coordinateDataFrame)
 
