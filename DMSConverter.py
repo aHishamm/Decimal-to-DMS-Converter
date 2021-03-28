@@ -52,6 +52,6 @@ def exportCSV(originalValList,convertedValList):
     if(os.path.exists('export_DMS_coordinate_history.csv')):
         with open('export_DMS_coordinate_history.csv','a') as f: 
             coordinateDataFrame.to_csv(f,header=f.tell()==0)
-    coordinateDataFrame.to_csv(r'export_DMS_coordinate_history.csv',index=False)
+    coordinateDataFrame.to_csv('export_DMS_coordinate_history.csv',index=False)
     print(coordinateDataFrame)
 
