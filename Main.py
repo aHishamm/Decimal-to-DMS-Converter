@@ -19,7 +19,7 @@ while True:
     if event == 'Ok':
         convertedVal = DMSConverter.toDMS(values[0])
         #pass original coordinate and DMS coordinate to function
-        #DMSConverter.toJSON(convertedVal,values[0])
+        DMSConverter.passToFirebase(convertedVal,values[0])
 
         originalValList.append(values[0])
         convertedValList.append(convertedVal)

@@ -2,7 +2,15 @@ import math
 import webbrowser
 import os 
 import pandas as pd 
-import json 
+import firebase_admin 
+from firebase_admin import credentials 
+from firebase_admin import db 
+#firebase configuration 
+databaseURLFile = open('C:\\Users\\Abdulrahman\\Desktop\\Firebase database address\\firebaseDatabaseAddress.txt','r')
+databaseURL = databaseURLFile.read()
+cred = credentials.Certificate('C:\\Users\\Abdulrahman\\Desktop\\python requests\\testpython-b2fae-firebase-adminsdk-mnt86-8d01d7b825.json')
+firebase_admin.initialize_app(cred, {'databaseURL':databaseURL})
+
 if os.name == 'nt': 
     webbrowser.register('chrome',
 	    None,
@@ -56,6 +64,11 @@ def exportCSV(originalValList,convertedValList):
     coordinateDataFrame.to_csv('export_DMS_coordinate_history.csv',index=False)
     print(coordinateDataFrame)
 
+
+def passToFirebase(DMSCoordinate, DecimalCoordinate): 
+    ref = db.reference('/')
+    dictionary = {'Decimal Coordinate': DecimalCoordinate, 'DMS Coordinate': DMSCoordinate}
+    ref.push(dictionary)
 
 #deprecated 
 # def toJSON(DMSCoordinate,DecimalCoordinate): 
