@@ -5,10 +5,11 @@ import pandas as pd
 import firebase_admin 
 from firebase_admin import credentials 
 from firebase_admin import db 
+import json 
 #firebase configuration 
-databaseURLFile = open('C:\\Users\\Abdulrahman\\Desktop\\Firebase database address\\firebaseDatabaseAddress.txt','r')
+databaseURLFile = open('C:\\Users\\cole1\\Desktop\\Decimal to DMS Project\\Firebase Configuration Data\\firebaseDatabaseAddress.txt','r')
 databaseURL = databaseURLFile.read()
-cred = credentials.Certificate('C:\\Users\\Abdulrahman\\Desktop\\python requests\\testpython-b2fae-firebase-adminsdk-mnt86-8d01d7b825.json')
+cred = credentials.Certificate('C:\\Users\\cole1\\Desktop\\Decimal to DMS Project\\Firebase Configuration Data\\testpython-b2fae-firebase-adminsdk-mnt86-8d01d7b825.json')
 firebase_admin.initialize_app(cred, {'databaseURL':databaseURL})
 
 if os.name == 'nt': 
@@ -70,8 +71,13 @@ def passToFirebase(DMSCoordinate, DecimalCoordinate):
     dictionary = {'Decimal Coordinate': DecimalCoordinate, 'DMS Coordinate': DMSCoordinate}
     ref.push(dictionary)
 
+def ExportFirebase(): 
+    ref = db.reference('/')
+    firebaseExportedData = ref.get()
+    print(type(firebaseExportedData))
+    toJSON(firebaseExportedData)
+
 #deprecated 
-# def toJSON(DMSCoordinate,DecimalCoordinate): 
-#     jsonData = {"Decimal Coordinate":DecimalCoordinate,"DMS Coordinate":DMSCoordinate}
-#     with open('JSONDump.json','w') as outfile:
-#         json.dump(jsonData,outfile)
+def toJSON(firebaseExportedData): 
+    with open('JSONDump.json','w') as outfile:
+        json.dump(firebaseExportedData,outfile,indent=4)

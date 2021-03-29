@@ -5,7 +5,7 @@ originalValList = []
 sg.theme('LightBlue')
 layout = [  [sg.Text('Please enter the latlong coordinate to be converted: (should be comma separated)')],
             [sg.InputText()],
-            [sg.Button('Ok'), sg.Button('Cancel'), sg.Button('Go to Google Maps'),sg.Button('Export DMS to CSV File')],
+            [sg.Button('Ok'), sg.Button('Cancel'), sg.Button('Go to Google Maps'),sg.Button('Export Data')],
             [sg.Text('Converted DMS Coordinates', key='-OUTPUT-')],
             [sg.Text('                                                            ', key='-Out')] 
             ]
@@ -28,7 +28,8 @@ while True:
         window['-Out'].update(convertedVal)
     if event == 'Go to Google Maps': 
         DMSConverter.GMapsRoute(convertedVal)
-    if event == 'Export DMS to CSV File': 
+    if event == 'Export Data': 
         DMSConverter.exportCSV(originalValList,convertedValList)
+        DMSConverter.ExportFirebase()
 
 window.close()
