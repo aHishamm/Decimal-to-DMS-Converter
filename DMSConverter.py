@@ -2,6 +2,7 @@ import math
 import webbrowser
 import os 
 import pandas as pd 
+import json 
 if os.name == 'nt': 
     webbrowser.register('chrome',
 	    None,
@@ -55,3 +56,9 @@ def exportCSV(originalValList,convertedValList):
     coordinateDataFrame.to_csv('export_DMS_coordinate_history.csv',index=False)
     print(coordinateDataFrame)
 
+
+#deprecated 
+# def toJSON(DMSCoordinate,DecimalCoordinate): 
+#     jsonData = {"Decimal Coordinate":DecimalCoordinate,"DMS Coordinate":DMSCoordinate}
+#     with open('JSONDump.json','w') as outfile:
+#         json.dump(jsonData,outfile)
