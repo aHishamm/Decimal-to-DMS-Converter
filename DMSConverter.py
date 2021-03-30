@@ -6,11 +6,17 @@ import firebase_admin
 from firebase_admin import credentials 
 from firebase_admin import db 
 import json 
+
+
 #firebase configuration 
+#path to the firebase database URL 
 databaseURLFile = open('C:\\Users\\cole1\\Desktop\\Decimal to DMS Project\\Firebase Configuration Data\\firebaseDatabaseAddress.txt','r')
 databaseURL = databaseURLFile.read()
+#path to the firebase database generated private key json file 
 cred = credentials.Certificate('C:\\Users\\cole1\\Desktop\\Decimal to DMS Project\\Firebase Configuration Data\\testpython-b2fae-firebase-adminsdk-mnt86-8d01d7b825.json')
 firebase_admin.initialize_app(cred, {'databaseURL':databaseURL})
+
+
 
 if os.name == 'nt': 
     webbrowser.register('chrome',
